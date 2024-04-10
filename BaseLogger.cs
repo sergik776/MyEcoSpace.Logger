@@ -81,8 +81,11 @@ namespace MyEcoSpace.Logger
                 SB.Append(" | ");
                 SB.Append(typeof(T).Name);
                 SB.Append(" | ");
-                SB.Append(methodName);
-                SB.Append(" | ");
+                if (methodName != null)
+                {
+                    SB.Append(methodName);
+                    SB.Append(" | ");
+                }
                 SB.Append(message);
                 return SB.ToString();
             });
