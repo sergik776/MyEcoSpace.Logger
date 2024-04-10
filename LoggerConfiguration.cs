@@ -18,11 +18,19 @@ namespace MyEcoSpace.Logger
         /// <summary>
         /// Формат даты и времени
         /// </summary>
-        public string DateTimeFormat { get; set; }
+        public string? DateTimeFormat { get; set; }
         /// <summary>
         /// Способ определения названия метода
         /// </summary>
         public GetMethodType GetMethodType { get; set; }
+        /// <summary>
+        /// Длинна буфера перед записью в хранилище логов
+        /// </summary>
+        public int BufferLength { get; set; }
+        /// <summary>
+        /// Уровень логирования при котором будет отправляться уведомление в сервис экстренных уведомлений
+        /// </summary>
+        public LogLevel AlarmLogLever { get; set; }
     }
 
     /// <summary>
@@ -33,7 +41,7 @@ namespace MyEcoSpace.Logger
         /// <summary>
         /// Путь к папке с логами
         /// </summary>
-        public string SaveFilePath { get; set; }
+        public string? SaveFilePath { get; set; }
     }
 
     /// <summary>
@@ -44,14 +52,14 @@ namespace MyEcoSpace.Logger
         /// <summary>
         /// Название БД
         /// </summary>
-        public string DBName { get; set; }
+        public string? DBName { get; set; }
         /// <summary>
         /// Логин БД
         /// </summary>
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         /// <summary>
         /// Пароль БД
         /// </summary>
-        public string Password { get; set; }
+        public string? Password { get; set; }
     }
 }

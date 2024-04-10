@@ -1,4 +1,6 @@
-﻿namespace MyEcoSpace.Logger.Interfaces
+﻿using MyEcoSpace.Logger.Enums;
+
+namespace MyEcoSpace.Logger.Interfaces
 {
     /// <summary>
     /// Интерфейс описывающий логирование
@@ -44,5 +46,12 @@
         /// <param name="message"></param>
         /// <returns></returns>
         Task Critical(string message);
+        /// <summary>
+        /// Логирование с указание уровня лога в параметрах
+        /// </summary>
+        /// <param name="message">Комментарий</param>
+        /// <param name="level">Уровень</param>
+        /// <returns></returns>
+        Task Log(string message, LogLevel level);
     }
 }

@@ -16,6 +16,6 @@ namespace MyEcoSpace.Logger.Interfaces
         /// </summary>
         /// <param name="message">Сообщение</param>
         /// <returns></returns>
-        public string SendAlarm(string message);
+        public Task SendAlarm(string message);
     }
 }
