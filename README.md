@@ -4,7 +4,7 @@
 ## Описание
 Библиотека позволяет логгировать события. Для логгирования можно использовать встроенные классы, такие как: ConsoleLogger, FileLogger, SQLiteDBLogger. Или создать свой, на основе ILogger.
 При использовании библиотеки можно настроить такие параметры как:
-\nLogLevel - уровни логгирования (Trace, Debug, Information, Warning, Error, Critical)
+LogLevel - уровни логгирования (Trace, Debug, Information, Warning, Error, Critical)
 LoggerType - указать тип логгера (ConsoleLogger, FileLogger, SQLiteDBLogger)
 GetMethodType - способ получения названия логгируемого метода (HardCode, StackTrace, Reflection)
 ChainResponsibilityMethod - метод ведения логов в цепочке обязанностей (TakeTurns, Parallel)
