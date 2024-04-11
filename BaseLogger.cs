@@ -171,27 +171,27 @@ namespace MyEcoSpace.Logger
         }
 
         #region Синтаксический сахар
-        public virtual async Task Trace(string message)
+        public async Task Trace(string message)
         {
             await Log(message, LogLevel.TRAC);
         }
-        public virtual async Task Debug(string message)
+        public async Task Debug(string message)
         {
             await Log(message, LogLevel.DEBG);
         }
-        public virtual async Task Info(string message)
+        public async Task Info(string message)
         {
             await Log(message, LogLevel.INFO);
         }
-        public virtual async Task Warn(string message)
+        public async Task Warn(string message)
         {
             await Log(message, LogLevel.WARN);
         }
-        public virtual async Task Error(string message)
+        public async Task Error(string message)
         {
             await Log(message, LogLevel.EROR);
         }
-        public virtual async Task Critical(string message)
+        public  async Task Critical(string message)
         {
             await Log(message, LogLevel.CRIT);
         }
