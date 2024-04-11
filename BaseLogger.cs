@@ -137,7 +137,7 @@ namespace MyEcoSpace.Logger
         private async Task DelegateStackTrace(string message, LogLevel level)
         {
             var stack = new StackTrace();
-            StackFrame frame = stack.GetFrame(3);
+            StackFrame frame = stack.GetFrame(9);
             string methodName = frame.GetMethod().Name;
             await AddLogToBuffer(level, message, methodName);
         }
@@ -165,33 +165,33 @@ namespace MyEcoSpace.Logger
         /// <param name="message">Комментарий</param>
         /// <param name="level">Уровень лога</param>
         /// <returns></returns>
-        public async Task Log(string message, LogLevel level)
+        public virtual async Task Log(string message, LogLevel level)
         {
             await MethodNameDelegate.Invoke(message, level);
         }
 
         #region Синтаксический сахар
-        public async Task Trace(string message)
+        public virtual async Task Trace(string message)
         {
             await Log(message, LogLevel.TRAC);
         }
-        public async Task Debug(string message)
+        public virtual async Task Debug(string message)
         {
             await Log(message, LogLevel.DEBG);
         }
-        public async Task Info(string message)
+        public virtual async Task Info(string message)
         {
             await Log(message, LogLevel.INFO);
         }
-        public async Task Warn(string message)
+        public virtual async Task Warn(string message)
         {
             await Log(message, LogLevel.WARN);
         }
-        public async Task Error(string message)
+        public virtual async Task Error(string message)
         {
             await Log(message, LogLevel.EROR);
         }
-        public async Task Critical(string message)
+        public virtual async Task Critical(string message)
         {
             await Log(message, LogLevel.CRIT);
         }

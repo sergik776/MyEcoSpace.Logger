@@ -47,7 +47,7 @@ namespace MyEcoSpace.Logger
     /// <summary>
     /// Класс конфигурации логгера базы данных
     /// </summary>
-    public class DBLoggerConfiguration : LoggerConfiguration
+    public class DBLoggerConfiguration : FileLoggerConfiguration
     {
         /// <summary>
         /// Название БД

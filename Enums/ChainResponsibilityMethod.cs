@@ -3,7 +3,7 @@
     /// <summary>
     /// Метод ведения логов в цепочке обязанностей
     /// </summary>
-    internal enum ChainResponsibilityMethod : byte
+    public enum ChainResponsibilityMethod : byte
     {
         /// <summary>
         /// Переходить к следующему логгеру, если текущий ушел в ошибку
