@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MyEcoSpace.Logger.Enums;
+using MyEcoSpace.Logger.Exceptions;
 using MyEcoSpace.Logger.Interfaces;
 using MyEcoSpace.Logger.Models.Config;
 using System;
@@ -14,40 +15,21 @@ namespace MyEcoSpace.Logger
     {
         List<ILogger<T>> loggers;
 
-        public static LoggerConfiguration GetConfig()
+        public MainLogger(JsonConfig config) : base(config.Loggers[0])
         {
-            IConfiguration Configuration = new ConfigurationBuilder()
-            .AddJsonFile("appconfig.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables()
-            .Build();
-
-            var loggerConfigSection = Configuration.GetSection("LoggerConfiguration");
-            JsonConfig JC = new JsonConfig();
-            loggerConfigSection.Bind(JC);
-            return JC.Loggers[0];
-        }
-
-        public MainLogger(LoggerConfiguration config) : base(config)
-        {
-            IConfiguration Configuration = new ConfigurationBuilder()
-            .AddJsonFile("appconfig.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables()
-            .Build();
-
-            var loggerConfigSection = Configuration.GetSection("LoggerConfiguration");
-            JsonConfig JC = new JsonConfig();
-            loggerConfigSection.Bind(JC);
             loggers = new List<ILogger<T>>();
-
-            foreach (var c in JC.Loggers)
+            foreach (var conf in config.Loggers)
             {
-                switch(c.LoggerType)
+                switch(conf.LoggerType)
                 {
-                    case Enums.LoggerType.ConsoleLogger:
-                        loggers.Add(new ConsoleLogger<T>(c));
+                    case LoggerType.ConsoleLogger:
+                        loggers.Add(new ConsoleLogger<T>(conf));
                         break;
-                    case Enums.LoggerType.FileLogger:
-                        loggers.Add(new FileLogger<T>(c));
+                    case LoggerType.FileLogger:
+                        loggers.Add(new FileLogger<T>((FileLoggerConfiguration)conf));
+                        break;
+                    default:
+                        loggers.Add(new ConsoleLogger<T>(conf));
                         break;
                 }
             }

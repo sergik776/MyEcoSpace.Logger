@@ -1,4 +1,5 @@
 ﻿using MyEcoSpace.Logger.Enums;
+using Newtonsoft.Json.Linq;
 
 namespace MyEcoSpace.Logger
 {
@@ -47,7 +48,7 @@ namespace MyEcoSpace.Logger
     /// <summary>
     /// Класс конфигурации логгера базы данных
     /// </summary>
-    public class DBLoggerConfiguration : FileLoggerConfiguration
+    public class DBLoggerConfiguration : LoggerConfiguration
     {
         /// <summary>
         /// Название БД
