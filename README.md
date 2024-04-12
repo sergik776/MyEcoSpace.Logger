@@ -58,9 +58,9 @@
 ## Примеры
 Создание экземпляра: 
 ```csharp
-ILogger<T> logger = new MainLogger<T>(config); // где config можно получить из метода ConfigParser.GetGonfig().
+// config можно получить из метода ConfigParser.GetGonfig().
+ILogger<T> logger = new MainLogger<T>(config); 
 ```
-<br>
 ASP.NET: 
 ```csharp
 using MyEcoSpace.Logger;
