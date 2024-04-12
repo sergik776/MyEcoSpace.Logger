@@ -4,10 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyEcoSpace.Logger.Configurations;
 using MyEcoSpace.Logger.Enums;
 using MyEcoSpace.Logger.Interfaces;
 
-namespace MyEcoSpace.Logger
+namespace MyEcoSpace.Logger.Realizations
 {
     /// <summary>
     /// Абстрактный логгер, инициализирует конфигурации
@@ -15,7 +16,7 @@ namespace MyEcoSpace.Logger
     /// <typeparam name="T">Логируемый класс</typeparam>
     public abstract class BaseLogger<T> : ILogger<T>
     {
-        public GetMethodType GetMethodType {  get; private set; }
+        public GetMethodType GetMethodType { get; private set; }
         public LoggerType LoggerType { get; private set; }
         public LogLevel LogLevel { get; private set; }
         public LogLevel AlarmLogLevel { get; private set; }
@@ -38,15 +39,15 @@ namespace MyEcoSpace.Logger
             LoggerType = config.LoggerType;
             LogLevel = config.LogLevel;
             BufferLength = config.BufferLength;
-            this.DateTimeFormat = config.DateTimeFormat ?? string.Empty;
-            this.AlarmLogLevel = config.AlarmLogLever;
+            DateTimeFormat = config.DateTimeFormat ?? string.Empty;
+            AlarmLogLevel = config.AlarmLogLever;
 
             logBuffer = [];
             SB = new StringBuilder();
 
             MethodNameDelegate = GetMethodType switch
             {
-                Enums.GetMethodType.HardCode => DelegateHardCode,
+                GetMethodType.HardCode => DelegateHardCode,
                 GetMethodType.StackTrace => DelegateStackTrace,
                 GetMethodType.Reflection => DelegateReflection,
                 _ => throw new Exception("Конфигурационный файл содержит неправильное определение для GetMethodType"),
@@ -106,7 +107,7 @@ namespace MyEcoSpace.Logger
                 logBuffer.Add(log);
                 SB.Clear();
 
-                if(logBuffer.Count >= BufferLength)
+                if (logBuffer.Count >= BufferLength)
                 {
                     await WriteBufferToStore();
                     logBuffer.Clear();
@@ -157,7 +158,7 @@ namespace MyEcoSpace.Logger
         /// Реализовать для каждого типа логгера индивидуально
         /// </summary>
         /// <returns></returns>
-        protected abstract Task WriteBufferToStore(); 
+        protected abstract Task WriteBufferToStore();
 
         /// <summary>
         /// Метод логирования
@@ -191,7 +192,7 @@ namespace MyEcoSpace.Logger
         {
             await Log(message, LogLevel.EROR);
         }
-        public  async Task Critical(string message)
+        public async Task Critical(string message)
         {
             await Log(message, LogLevel.CRIT);
         }

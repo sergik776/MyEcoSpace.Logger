@@ -1,4 +1,5 @@
-﻿using MyEcoSpace.Logger.Enums;
+﻿using MyEcoSpace.Logger.Configurations;
+using MyEcoSpace.Logger.Enums;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using MyEcoSpace.Logger.Enums;
 using Newtonsoft.Json.Linq;
 
-namespace MyEcoSpace.Logger
+namespace MyEcoSpace.Logger.Configurations
 {
     /// <summary>
     /// Класс конфигурации логгера

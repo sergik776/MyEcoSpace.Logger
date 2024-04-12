@@ -11,8 +11,37 @@
 <br>Эти параметры можно указать в applicationconfig.json
 
 ## Установка
+Создание экземпляра: ILogger<T> logger = new MainLogger<T>(config); // где config можно получить из метода ConfigParser.GetGonfig().
+ASP.NET: Services.AddLogger<T>();
 
-## Использование
+## Настройка
+Для настройки файла конфигурации необходимо, что бы в проекте был файл конфигурации с названием "appconfig.json". В нем должен быть блок "LoggerConfiguration", который соответствует следующей сигнатуре:
+```json
+{
+  "LoggerConfiguration": {
+    "LogginingType": "Parallel",
+    "GetMethodType": "StackTrace",
+    "Loggers": [
+      {
+        "LoggerType": "ConsoleLogger",
+        "LogLevel": "INFO",
+        "DateTimeFormat": "dd.MM.yyyy HH:mm:ss",
+        "BufferLength": 1,
+        "AlarmLogLevel": "EROR"
+      },
+      {
+        "LoggerType": "FileLogger",
+        "LogLevel": "INFO",
+        "DateTimeFormat": "dd.MM.yyyy HH:mm:ss",
+        "BufferLength": 1,
+        "AlarmLogLevel": "EROR",
+        "SaveFilePath": "D://Logs"
+      }
+    ]
+  }
+}
+
+```
 
 ## Примеры
 
