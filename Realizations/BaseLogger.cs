@@ -17,7 +17,7 @@ namespace MyEcoSpace.Logger.Realizations
     public abstract class BaseLogger<T> : ILogger<T>
     {
         public GetMethodType GetMethodType { get; private set; }
-        public LoggerType LoggerType { get; private set; }
+        public string LoggerType { get; private set; }
         public LogLevel LogLevel { get; private set; }
         public LogLevel AlarmLogLevel { get; private set; }
         public int BufferLength { get; private set; }
@@ -73,8 +73,6 @@ namespace MyEcoSpace.Logger.Realizations
         /// <returns>Лог</returns>
         protected virtual async Task<string> LogGeneration(LogLevel level, string message, string? methodName = null)
         {
-            return await Task.Factory.StartNew(() =>
-            {
                 string log = string.Empty;
                 SB.Append(DateTime.Now.ToString(DateTimeFormat));
                 SB.Append(" | ");
@@ -89,7 +87,6 @@ namespace MyEcoSpace.Logger.Realizations
                 }
                 SB.Append(message);
                 return SB.ToString();
-            });
         }
 
         /// <summary>
@@ -101,8 +98,6 @@ namespace MyEcoSpace.Logger.Realizations
         /// <returns></returns>
         private async Task AddLogToBuffer(LogLevel level, string message, string? methodName = null)
         {
-            await Task.Factory.StartNew(async () =>
-            {
                 var log = await LogGeneration(level, message, methodName);
                 logBuffer.Add(log);
                 SB.Clear();
@@ -116,7 +111,6 @@ namespace MyEcoSpace.Logger.Realizations
                 {
                     await _notificationService.SendAlarm(log);
                 }
-            });
         }
 
         /// <summary>

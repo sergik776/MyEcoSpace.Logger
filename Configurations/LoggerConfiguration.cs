@@ -11,7 +11,7 @@ namespace MyEcoSpace.Logger.Configurations
         /// <summary>
         /// Тип логгера
         /// </summary>
-        public LoggerType LoggerType { get; set; }
+        public string LoggerType { get; set; }
         /// <summary>
         /// Уровень логов
         /// </summary>
@@ -32,35 +32,5 @@ namespace MyEcoSpace.Logger.Configurations
         /// Уровень логирования при котором будет отправляться уведомление в сервис экстренных уведомлений
         /// </summary>
         public LogLevel AlarmLogLever { get; set; }
-    }
-
-    /// <summary>
-    /// Класс конфигурации файлового логгера
-    /// </summary>
-    internal class FileLoggerConfiguration : LoggerConfiguration
-    {
-        /// <summary>
-        /// Путь к папке с логами
-        /// </summary>
-        public string? SaveFilePath { get; set; }
-    }
-
-    /// <summary>
-    /// Класс конфигурации логгера базы данных
-    /// </summary>
-    internal class DBLoggerConfiguration : LoggerConfiguration
-    {
-        /// <summary>
-        /// Название БД
-        /// </summary>
-        public string? DBName { get; set; }
-        /// <summary>
-        /// Логин БД
-        /// </summary>
-        public string? UserName { get; set; }
-        /// <summary>
-        /// Пароль БД
-        /// </summary>
-        public string? Password { get; set; }
     }
 }

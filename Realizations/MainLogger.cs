@@ -4,9 +4,11 @@ using MyEcoSpace.Logger.Enums;
 using MyEcoSpace.Logger.Exceptions;
 using MyEcoSpace.Logger.Interfaces;
 using MyEcoSpace.Logger.Models.Config;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,18 +25,31 @@ namespace MyEcoSpace.Logger.Realizations
             loggers = new List<ILogger<T>>();
             foreach (var conf in config.Loggers)
             {
-                switch (conf.LoggerType)
+                var loggerType = ConfigParser.GetAllLoggerOfBaseLogger().FirstOrDefault(x => x.Key == conf.LoggerType).Value;
+                if(loggerType != null)
                 {
-                    case LoggerType.ConsoleLogger:
-                        loggers.Add(new ConsoleLogger<T>(conf));
-                        break;
-                    case LoggerType.FileLogger:
-                        loggers.Add(new FileLogger<T>((FileLoggerConfiguration)conf));
-                        break;
-                    default:
-                        loggers.Add(new ConsoleLogger<T>(conf));
-                        break;
+                    Type genericType = typeof(T);
+                    var genericedLogger = loggerType.MakeGenericType(genericType);
+                    var contsruct = genericedLogger.GetConstructors().FirstOrDefault();
+                    object[] parameters = new object[] { conf };
+                    object instance = contsruct.Invoke(parameters);
+                    loggers.Add((ILogger<T>)instance);
                 }
+
+
+
+                //switch (conf.LoggerType)
+                //{
+                //    case "ConsoleLogger":
+                //        loggers.Add(new ConsoleLogger<T>(conf));
+                //        break;
+                //    case "FileLogger":
+                //        loggers.Add(new FileLogger<T>((FileLoggerConfiguration)conf));
+                //        break;
+                //    default:
+                //        loggers.Add(new ConsoleLogger<T>(conf));
+                //        break;
+                //}
             }
 
             if (config.LogginingType == ChainResponsibilityMethod.Parallel)

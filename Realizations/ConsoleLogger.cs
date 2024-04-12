@@ -17,13 +17,10 @@ namespace MyEcoSpace.Logger.Realizations
 
         protected override async Task WriteBufferToStore()
         {
-            await Task.Factory.StartNew(() =>
+            foreach (var a in logBuffer)
             {
-                foreach (var a in logBuffer)
-                {
-                    Console.WriteLine(a.ToString());
-                }
-            });
+                Console.WriteLine(a.ToString());
+            }
         }
     }
 }
