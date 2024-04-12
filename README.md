@@ -10,10 +10,6 @@
 <br>ChainResponsibilityMethod - метод ведения логов в цепочке обязанностей (TakeTurns, Parallel)
 <br>Эти параметры можно указать в applicationconfig.json
 
-## Установка
-Создание экземпляра: ILogger<T> logger = new MainLogger<T>(config); // где config можно получить из метода ConfigParser.GetGonfig().
-ASP.NET: Services.AddLogger<T>();
-
 ## Настройка
 Для настройки файла конфигурации необходимо, что бы в проекте был файл конфигурации с названием "appconfig.json". В нем должен быть блок "LoggerConfiguration", который соответствует следующей сигнатуре:
 ```json
@@ -54,13 +50,14 @@ ASP.NET: Services.AddLogger<T>();
 <br>LoggerType - тип логгера, можно создать свой унаследовав класс от BaseLogger или ILogger
 <br>Уже существующие варианты:
 <br>ConsoleLogger, FileLogger, SQLiteDBLogger (не реализован)<br>
-<br>LogLevel - Уровни логирования (TRAC, DEBG, INFO, WARN, EROR, CRIT)
-<br>LogLevel - Указать с какого уровня начинаеться запись в лог. По умолчанию INFO.<br>
+<br>LogLevel - Уровни логирования (TRAC, DEBG, INFO, WARN, EROR, CRIT). Указать с какого уровня начинаеться запись в лог. По умолчанию INFO.<br>
 <br>DateTimeFormat - формат записи времени лога. Используете сигнатуру DateTime.ToString()<br>
 <br>BufferLength - длинна буфера. Восле достижения количества сообщений, логи из буфера щаписываются в хранилище, буфер очищаеться<br>
 <br>AlarmLogLevel - Уровень лога при котором отправляеться уведосление в сервис экстренных уведомлений
 
 ## Примеры
+Создание экземпляра: ILogger<T> logger = new MainLogger<T>(config); // где config можно получить из метода ConfigParser.GetGonfig().
+ASP.NET: Services.AddLogger<T>();
 
 ## Лицензия
 Этот проект распространяется под лицензией [MIT](https://opensource.org/licenses/MIT), которая разрешает свободное использование, изменение и распространение кода в соответствии с условиями лицензии MIT.
