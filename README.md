@@ -19,14 +19,31 @@ ASP.NET: Services.AddLogger<T>();
 ```json
 {
   "LoggerConfiguration": {
-    "LogginingType": "Parallel",
+    // LogginingType - Способ логирования
+	// TakeTurns - вызывает логирование у первого в очереди логгера, если он не доступен, делегирует задачу следующему логгеру в очереди
+	// Parallel - логгирует комментраий во все доступные логгеры паралельно
+    "LogginingType": "Parallel",  
+	// GetMethodType - способ получения названия метода в котором вызвано логирование
+	// HardCodeм - название метода указывает разработчик передавая в лог
+	// StackTrace - название метода вытягивается из стек трейса
+	// Reflection - название метода вытягивается из рефлексии (не реализовано)
     "GetMethodType": "StackTrace",
+	//Список логгеров
     "Loggers": [
       {
+		//LoggerType - тип логгера, можно создать свой унаследовав класс от BaseLogger или ILogger
+		//Уже существующие варианты:
+		//ConsoleLogger, FileLogger, SQLiteDBLogger (не реализован)
         "LoggerType": "ConsoleLogger",
+		// LogLevel - Уровни логирования
+		// TRAC, DEBG, INFO, WARN, EROR, CRIT
+		// LogLevel - Указать с какого уровня начинаеться запись в лог. По умолчанию INFO.
         "LogLevel": "INFO",
+		// DateTimeFormat - формат записи времени лога. Используете сигнатуру DateTime.ToString()
         "DateTimeFormat": "dd.MM.yyyy HH:mm:ss",
+		// BufferLength - длинна буфера. Восле достижения количества сообщений, логи из буфера щаписываются в хранилище, буфер очищаеться.
         "BufferLength": 1,
+		// AlarmLogLevel - Уровень лога при котором отправляеться уведосление в сервис экстренных уведомлений
         "AlarmLogLevel": "EROR"
       },
       {
