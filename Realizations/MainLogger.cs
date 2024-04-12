@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MyEcoSpace.Logger.Realizations
 {
-    public class MainLogger<T> : ILogger<T>
+    internal class MainLogger<T> : ILogger<T>
     {
         List<ILogger<T>> loggers;
         JsonConfig config;

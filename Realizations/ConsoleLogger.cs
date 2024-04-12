@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyEcoSpace.Logger.Realizations
 {
-    public class ConsoleLogger<T> : BaseLogger<T>
+    internal class ConsoleLogger<T> : BaseLogger<T>
     {
         public ConsoleLogger(LoggerConfiguration config) : base(config)
         {

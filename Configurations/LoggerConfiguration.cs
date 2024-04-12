@@ -37,7 +37,7 @@ namespace MyEcoSpace.Logger.Configurations
     /// <summary>
     /// Класс конфигурации файлового логгера
     /// </summary>
-    public class FileLoggerConfiguration : LoggerConfiguration
+    internal class FileLoggerConfiguration : LoggerConfiguration
     {
         /// <summary>
         /// Путь к папке с логами
@@ -48,7 +48,7 @@ namespace MyEcoSpace.Logger.Configurations
     /// <summary>
     /// Класс конфигурации логгера базы данных
     /// </summary>
-    public class DBLoggerConfiguration : LoggerConfiguration
+    internal class DBLoggerConfiguration : LoggerConfiguration
     {
         /// <summary>
         /// Название БД

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MyEcoSpace.Logger.Configurations
 {
-    public static class ConfigParser
+    internal static class ConfigParser
     {
         public static JsonConfig GetGonfig()
         {

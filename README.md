@@ -58,7 +58,19 @@
 ## Примеры
 Создание экземпляра: 
 ```csharp
-ILogger<T> logger = new MainLogger<T>(); 
+using MyEcoSpace.Logger.Interfaces;
+using MyEcoSpace.Logger;
+
+class Program
+{
+    static void Main()
+    {
+        LoggerFactory LF = new LoggerFactory();
+		//Где Т - логируеммый класс
+        ILogger<T> logger = LF.Create<T>(); 
+        logger.Info("Hello logger");
+    }
+}
 ```
 ASP.NET: 
 ```csharp
