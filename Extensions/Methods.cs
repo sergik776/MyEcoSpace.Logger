@@ -16,7 +16,7 @@ namespace MyEcoSpace.Logger.Extensions
         public static IServiceCollection AddILogger<T>(this IServiceCollection services)
         {
             var c = ConfigParser.GetGonfig();
-            services.AddSingleton<ILogger<T>>(new MainLogger<T>(c));
+            services.AddSingleton<ILogger<T>, MainLogger<T>>();
             return services;
         }
     }

@@ -58,7 +58,7 @@
 ## Примеры
 Создание экземпляра: 
 ```csharp
-ILogger<T> logger = new MainLogger<T>(ConfigParser.GetGonfig()); 
+ILogger<T> logger = new MainLogger<T>(); 
 ```
 ASP.NET: 
 ```csharp
