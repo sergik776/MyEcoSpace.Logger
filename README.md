@@ -56,8 +56,28 @@
 <br>AlarmLogLevel - Уровень лога при котором отправляеться уведосление в сервис экстренных уведомлений
 
 ## Примеры
-Создание экземпляра: ILogger<T> logger = new MainLogger<T>(config); // где config можно получить из метода ConfigParser.GetGonfig().
-ASP.NET: Services.AddLogger<T>();
+Создание экземпляра: 
+```csharp
+ILogger<T> logger = new MainLogger<T>(config); // где config можно получить из метода ConfigParser.GetGonfig().
+```
+<br>
+ASP.NET: 
+```csharp
+using MyEcoSpace.Logger;
+
+public static partial class Program
+{
+	public static void Main(string[] args)
+	{
+		var builder = WebApplication.CreateBuilder(args);
+		builder.Services.AddLogger<T>();
+		//Добавление ваших сервисов
+		var app = builder.Build();
+		//Инициализация приложения
+		app.Run();
+    }
+}
+```
 
 ## Лицензия
 Этот проект распространяется под лицензией [MIT](https://opensource.org/licenses/MIT), которая разрешает свободное использование, изменение и распространение кода в соответствии с условиями лицензии MIT.
