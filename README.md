@@ -58,8 +58,7 @@
 ## Примеры
 Создание экземпляра: 
 ```csharp
-// config можно получить из метода ConfigParser.GetGonfig().
-ILogger<T> logger = new MainLogger<T>(config); 
+ILogger<T> logger = new MainLogger<T>(ConfigParser.GetGonfig()); 
 ```
 ASP.NET: 
 ```csharp
